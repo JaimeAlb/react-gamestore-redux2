@@ -1,20 +1,20 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 import React, { useState } from 'react';
 // import Button from 'react-bootstrap/Button';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import List from './List';
+import List from '../components/List';
 // snippet sfc
 // snippet nfn
 // snippet usf (Simple react snippets - Burke Holland)
 
 // REVISAR FILTRO EN LA LLAMADA A LA API
 
-const Layout = () => {
+const Productos = () => {
   const [data, setData] = useState([]);
-  const mostrar10Productos = () => {
+  const mostrar9Productos = () => {
     const response = axios.get('https://www.amiiboapi.com/api/amiibo/');
     response.then(
       result => {
@@ -35,8 +35,8 @@ const Layout = () => {
   console.log(data);
   return (
     <>
-      <Container fluid>
-            <Button variant="outline-danger" onClick={mostrar10Productos}>
+      {/* <Container fluid> */}
+            <Button variant="outline-danger" onClick={mostrar9Productos}>
               Actualizar then
             </Button>
         {/* <Row> */}
@@ -77,9 +77,9 @@ const Layout = () => {
         {/* <Button onClick={mostrarTodo}>
           Actualizar async/await
         </Button> */}
-      </Container>
+      {/* </Container> */}
     </>
   );
 };
 
-export default Layout;
+export default Productos;

@@ -1,13 +1,16 @@
-import './App.css';
+// import './App.css';
 
-import Layout from './components/Layout';
+import Productos from './containers/Productos';
+import Layout from './hoc/layout/Layout';
 
 // asdfasdfasfasdf
 function App () {
   return (
     <div className="App">
       <header className="App-header">
-        <Layout />
+        <Layout>
+          {/* <Productos></Productos> */}
+        </Layout>
       </header>
     </div>
   );
