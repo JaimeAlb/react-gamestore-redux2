@@ -3,15 +3,12 @@
 import Productos from './containers/Productos';
 import Layout from './hoc/layout/Layout';
 
-// asdfasdfasfasdf
 function App () {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
         <Layout>
         <Productos/>
         </Layout>
-      </header>
     </div>
   );
 }
