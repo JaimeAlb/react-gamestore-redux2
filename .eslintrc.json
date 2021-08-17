@@ -5,7 +5,8 @@
     "plugins": [
         "import-length",
         "import",
-        "simple-import-sort"
+        "simple-import-sort",
+        "react-hooks"
     ],
     "extends": [
         "eslint:recommended",
@@ -18,7 +19,8 @@
         "import/order": "error",
         "import/newline-after-import": "error",
         "import/no-anonymous-default-export": "error",
-        "simple-import-sort/imports": "error"
+        "simple-import-sort/imports": "error",
+        "react-hooks/exhaustive-deps": "disabled"
     },
     "overrides": [
         {

@@ -2,14 +2,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 import CardCustom from '../components/CardCustom';
 import ModalCustom from '../components/UI/ModalCustom';
 import SpinnerCustom from '../components/UI/SpinnerCustom';
-// snippet sfc
-// snippet nfn
-// snippet usf (Simple react snippets - Burke Holland)
+//  nfn named function - JavaScript (ES6) code snippets
+//  anfn anonymous function () => {} - JavaScript (ES6) code snippets
+//  sfc stateless function component - Simple React Snippets - Burke Holland
+//  usf Declare a new state variable using State Hook- Simple React Snippets - Burke Holland
+//  uef useEffect Hook - Simple React Snippets
 
 // REVISAR FILTRO EN LA LLAMADA A LA API
 // 1, 2, 3, 1, 4
@@ -22,37 +24,60 @@ const Productos = () => {
   const [data, setData] = useState([]);
   const [isSpinnerActive, setIsSpinnerActive] = useState(false);
   const [modal, setModal] = useState(false);
+  const [productsNumber, setProductsNumber] = useState(3);
 
-  useEffect(() => {
-    console.log('[x:2]se ejecuto el useEffect');
-    mostrar9ProductosAwait();
-  }, []);
+  // useEffect(() => {
+  //   document.title = productsNumber;
+  // });
 
-  useEffect(() => {
-    console.log('[x:4]se ejecuto el 2do useEffect');
-    if (data.length > 0) { console.log('[x:5]su data ha sido cargada'); }
-  }, [data]);
+  // useEffect(() => {
+  //   // console.log('[x:4]se ejecuto el 2do useEffect');
+  //   if (data.length > 0) { console.log('[x:5]su data ha sido cargada'); }
+  // }, [data]);
+  const increaseProductNumber = () => {
+    setProductsNumber(productsNumber + 1);
+    // showProducts();
+  };
+  const decreaseProductNumber = () => {
+    setProductsNumber(productsNumber - 1);
+    // showProducts();
+  };
 
-  const mostrar9ProductosAwait = async (option) => {
+  const showProducts = async (option) => {
+    console.log(axios.get('https://www.amiiboapi.com/api/amiibo/'));
+    setIsSpinnerActive(true);
     console.log('[y]option:', option);
     const response = await axios.get('https://www.amiiboapi.com/api/amiibo/');
     const filteredData = response.data.amiibo.filter((obj, index) =>
-      index < 6
+      index < productsNumber
     );
     setData(filteredData);
     if (option) {
-      setModal(true);
+      setModal(false);
     }
     setIsSpinnerActive(false);
   };
+  useEffect(() => {
+    console.log('[x:2]se ejecuto el useEffect');
+    showProducts();
+  }, [productsNumber]);
+
   // console.log(data);
-  console.log('[x:1]data antes de return:', data);
+  console.log('[x:2]productsNumber antes de return:', productsNumber);
   const handleClose = () => setModal(false);
   return (
     <>
-      {isSpinnerActive
-        ? <SpinnerCustom variantColor="danger" animation="grow" />
-        : <Button variant="outline-danger" onClick={() => mostrar9ProductosAwait(true)}>
+      <Button onClick={() =>
+        increaseProductNumber()
+      }>+</Button>
+      <Button onClick={() =>
+        decreaseProductNumber()
+      }>-</Button>
+      <span>{productsNumber}</span>
+      {
+    isSpinnerActive
+      ? <SpinnerCustom variantColor="danger" animation="grow" />
+      : <Button variant="outline-danger" onClick={() => showProducts(true)}>
           Show Products
         </Button>
       }
