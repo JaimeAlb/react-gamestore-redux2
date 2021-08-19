@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-const Navbar1 = () => {
+const Navbar1 = (props) => {
+  const { cartNumber } = props;
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -18,6 +19,7 @@ const Navbar1 = () => {
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <span style={{ color: 'white' }}>{cartNumber}</span>
         </Navbar.Collapse>
       </Container>
     </Navbar>

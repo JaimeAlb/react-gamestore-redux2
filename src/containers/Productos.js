@@ -20,15 +20,13 @@ import SpinnerCustom from '../components/UI/SpinnerCustom';
 // FIN PRIMERA ETAPA
 // 2DA ETAPA: AGREGAR DETALLES DE CARRO DE COMPRA, NUEVA PAGINA
 
-const Productos = () => {
+const Productos = (props) => {
   const [data, setData] = useState([]);
   const [isSpinnerActive, setIsSpinnerActive] = useState(false);
   const [modal, setModal] = useState(false);
   const [productsNumber, setProductsNumber] = useState(3);
-
-  // useEffect(() => {
-  //   document.title = productsNumber;
-  // });
+  // const [cartNumber, setCartNumber] = useState(0);
+  const { cartNumber, handleCartNumber } = props;
 
   // useEffect(() => {
   //   // console.log('[x:4]se ejecuto el 2do useEffect');
@@ -36,11 +34,9 @@ const Productos = () => {
   // }, [data]);
   const increaseProductNumber = () => {
     setProductsNumber(productsNumber + 1);
-    // showProducts();
   };
   const decreaseProductNumber = () => {
     setProductsNumber(productsNumber - 1);
-    // showProducts();
   };
 
   const showProducts = async (option) => {
@@ -53,7 +49,7 @@ const Productos = () => {
     );
     setData(filteredData);
     if (option) {
-      setModal(false);
+      setModal(true);
     }
     setIsSpinnerActive(false);
   };
@@ -85,7 +81,9 @@ const Productos = () => {
       <Row xs={1} md={3} className="g-4">
         {data.map((product, index) => (
           <Col>
-            <CardCustom index={index} product={product} />
+            <CardCustom index={index} product={product} buyItems={() => {
+              handleCartNumber(cartNumber + 1);
+            }} />
           </Col>
         ))}
       </Row>
