@@ -6,10 +6,13 @@ import Layout from './hoc/layout/Layout';
 
 function App () {
   const [cartNumber, setCartNumber] = useState(0);
+  const handleCartNumber = (cNumber) => {
+    setCartNumber(cNumber);
+  };
   return (
     <div>
       <Layout cartNumber={cartNumber}>
-        <Productos cartNumber={cartNumber} handleCartNumber={cartNumber => setCartNumber(cartNumber)} />
+        <Productos cartNumber={cartNumber} onCartNumber={handleCartNumber} />
       </Layout>
     </div>
   );
