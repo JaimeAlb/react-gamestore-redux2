@@ -21,12 +21,12 @@ import SpinnerCustom from '../components/UI/SpinnerCustom';
 // 2DA ETAPA: AGREGAR DETALLES DE CARRO DE COMPRA, NUEVA PAGINA
 
 const Productos = (props) => {
+  const { onCartNumber } = props;
   const [data, setData] = useState([]);
   const [isSpinnerActive, setIsSpinnerActive] = useState(false);
   const [modal, setModal] = useState(false);
   const [productsNumber, setProductsNumber] = useState(3);
   const [productArray, setProductArray] = useState([]);
-  const { cartNumber, onCartNumber } = props;
 
   const increaseProductNumber = () => {
     setProductsNumber(productsNumber + 1);
@@ -34,7 +34,6 @@ const Productos = (props) => {
   const decreaseProductNumber = () => {
     setProductsNumber(productsNumber - 1);
   };
-
   const showProducts = async (option) => {
     setIsSpinnerActive(true);
     const response = await axios.get('https://www.amiiboapi.com/api/amiibo/');
@@ -47,28 +46,18 @@ const Productos = (props) => {
     }
     setIsSpinnerActive(false);
   };
+  const handleClose = () => setModal(false);
+  const handleProductArray = (p) => {
+    // const tempProductArray = productArray;
+    setProductArray([...productArray, p.tail]);
+  };
   useEffect(() => {
     showProducts();
   }, [productsNumber]);
 
-  const handleClose = () => setModal(false);
-  const buyItems = () => {
-    onCartNumber(cartNumber + 1);
-    // console.log(data);
-  };
-  // const printName = (asd) => {
-  //   console.log(asd);
-  // };
-  const handleProductArray = (p) => {
-    // const tempProductArray = productArray;
-    setProductArray([...productArray, p]);
-    console.log('[x:1 p]', p);
-  };
   useEffect(() => {
     onCartNumber(productArray.length);
   }, [productArray]);
-  console.log('[x:1 productArray]', productArray);
-  console.log('[x:1 lenght]', cartNumber);
   return (
     <>
       <Button onClick={() =>
@@ -89,8 +78,7 @@ const Productos = (props) => {
       <Row xs={1} md={3} className="g-4">
         {data.map((product, index) => (
           <Col>
-            <CardCustom index={index} product={product} buyItems={buyItems} productArray={productArray} onProductArray={handleProductArray}/>
-            {/* {printName(product.character)} */}
+            <CardCustom index={index} product={product} onProductArray={handleProductArray}/>
           </Col>
         ))}
       </Row>

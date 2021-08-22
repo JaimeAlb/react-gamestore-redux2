@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
 
 const CardCustom = (props) => {
-  const { index, product, buyItems, productArray, onProductArray } = props; // destructuracion de objetos
+  const { index, product, onProductArray } = props; // destructuracion de objetos
   const handleClick = () => {
     onProductArray(product);
   };

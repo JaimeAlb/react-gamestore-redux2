@@ -20,7 +20,7 @@
         "import/newline-after-import": "error",
         "import/no-anonymous-default-export": "error",
         "simple-import-sort/imports": "error",
-        "react-hooks/exhaustive-deps": "disabled"
+        "react-hooks/exhaustive-deps": "off"
     },
     "overrides": [
         {
