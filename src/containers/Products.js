@@ -20,7 +20,7 @@ import SpinnerCustom from '../components/UI/SpinnerCustom';
 // FIN PRIMERA ETAPA
 // 2DA ETAPA: AGREGAR DETALLES DE CARRO DE COMPRA, NUEVA PAGINA
 
-const Productos = (props) => {
+const Products = (props) => {
   const { onCartNumber } = props;
   const [data, setData] = useState([]);
   const [isSpinnerActive, setIsSpinnerActive] = useState(false);
@@ -86,4 +86,4 @@ const Productos = (props) => {
   );
 };
 
-export default Productos;
+export default Products;

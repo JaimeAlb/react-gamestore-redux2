@@ -1,10 +1,10 @@
-import Productos from '../../containers/Productos';
+import Products from '../../containers/Products';
 
 function Home (props) {
   const { onCartNumber } = props;
   return (
     <div>
-      <Productos onCartNumber={onCartNumber} />
+      <Products onCartNumber={onCartNumber} />
     </div>
   );
 }

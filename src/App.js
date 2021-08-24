@@ -1,21 +1,34 @@
-// import './App.css';
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  // Link,
+  Route,
+  Switch
+} from 'react-router-dom';
 
-import Productos from './containers/Productos';
-import Layout from './hoc/layout/Layout';
+import NavbarCustom from './components/Navigation/Navbar/NavbarCustom';
+import Cart from './hoc/layout/Cart';
+import Home from './hoc/layout/Home';
 
-function App () {
+export default function App () {
   const [cartNumber, setCartNumber] = useState(0);
-  const handleCartNumber = (cNumber) => {
-    setCartNumber(cNumber);
+  const handleCartNumber = (cartNumberArg) => {
+    setCartNumber(cartNumberArg);
   };
+
   return (
-    <div>
-      <Layout cartNumber={cartNumber}>
-        <Productos cartNumber={cartNumber} onCartNumber={handleCartNumber} />
-      </Layout>
-    </div>
+    <Router>
+      <div>
+        <NavbarCustom toHome={'/'} toCart={'/cart'} cartNumber={cartNumber}/>
+        <Switch>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/">
+            <Home cartNumber={cartNumber} onCartNumber={handleCartNumber}/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;

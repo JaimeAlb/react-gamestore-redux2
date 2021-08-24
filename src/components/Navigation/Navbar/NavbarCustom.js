@@ -6,7 +6,7 @@ import {
   // Switch
 } from 'react-router-dom';
 
-const Navbar1 = (props) => {
+const NavbarCustom = (props) => {
   const { cartNumber, toHome, toCart } = props;
   return (
       <Navbar bg="dark" variant="dark">
@@ -32,4 +32,4 @@ const Navbar1 = (props) => {
   );
 };
 
-export default Navbar1;
+export default NavbarCustom;
